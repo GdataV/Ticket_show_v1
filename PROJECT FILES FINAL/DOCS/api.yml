@@ -1,0 +1,168 @@
+openapi: 3.0.0
+info:
+  title: Sample API
+  description: Optional multiline or single-line description in [CommonMark](http://commonmark.org/help/) or HTML.
+  version: 0.1.9
+servers:
+  - url: http://127.0.0.1:5000
+    description: Main web page
+  - url: http://192.168.0.162:5000
+    description: Main web page
+paths:
+  api/listvenue:
+    get:
+      summary: Returns a list of venues.
+      description: Optional extended description in CommonMark or HTML.
+      responses:
+        'api':   
+          description: A JSON array of venue names
+          content:
+            application/json:
+              schema: 
+                type: array
+                items: 
+                type: string
+  
+  api/createvenue:
+    post:
+      summary: Creates a venue.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                Name:
+                  type: string
+                Place:
+                  type: string
+                Capacity:
+                  type: int
+      responses: 
+        '"Response":"Venue Added"':
+          description: Created
+    
+    api/updatevenue:
+      put:
+        summary: Updates a venue.
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                        type: int
+                      Name:
+                        type: string
+                      Place:
+                        type: string
+                      Capacity:
+                        type: int
+        responses: 
+          '"Response":"Venue Updated"':
+            description: Updated
+    
+   
+    api/deletevenue:
+      post:
+        summary: Deletes a venue.
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: int
+        responses: 
+          '"Response":"Venue Deleted"':
+            description: deleted     
+
+
+    api/listshow:
+      get:
+        summary: Returns a list of shows.
+        description: Optional extended description in CommonMark or HTML.
+        responses:
+          'api':   
+            description: A JSON array of show names
+            content:
+              application/json:
+                schema: 
+                    type: array
+                  items: 
+                    type: string
+      
+    api/createshow:
+      post:
+        summary: Creates a show.
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Name:
+                    type: string
+                  Ticketprice:
+                    type: float
+                  Tags:
+                    type: string
+                  starttime:
+                    type: int
+                  endtime:
+                    type: int
+                  Venue_id:
+                    type: int
+        responses: 
+          '"Response":"Show Added"':
+            description: show created
+    
+    api/updateshow:
+      put:
+        summary: update a show.
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: int
+                  Name:
+                    type: string
+                  Ticketprice:
+                    type: float
+                  Tags:
+                    type: string
+                  starttime:
+                    type: int
+                  endtime:
+                    type: int
+                  Venue_id:
+                    type: int
+        responses: 
+          '"Response":"Show Updated"':
+            description: updated
+    
+    api/deleteshow:
+      delete:
+        summary: delete a show.
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: int
+        responses: 
+          '"Response":"Show Deleted"':
+            description: Deleted show

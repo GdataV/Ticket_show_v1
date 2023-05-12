@@ -1,0 +1,32 @@
+{% extends 'admin/master.html'%}
+{% block body%}
+<div>
+    <canvas id="myChart"></canvas>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <script>
+    const ctx = document.getElementById('myChart');
+    let labels = JSON.parse({{ data1 | tojson }});
+    let ticketdata = JSON.parse({{ data2 | tojson }}); //syntax highlighting due to jinja pre processing
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Number of tickets sold',
+          data: ticketdata,
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+
+{%endblock body%}
